@@ -6,7 +6,7 @@ class Veicolo {
   /**
    *
    * @param {string} marca
-   * @param {number} anno
+   * @param {number|string} anno
    */
   constructor(marca, anno) {
     // Usiamo i setter marca e anno pre validare i dati in ingresso
@@ -91,3 +91,38 @@ console.log(auto);
 console.log(auto.informazioni());
 console.log(auto.annoAttuale());
 console.log(auto.eta);
+
+class Automobile extends Veicolo {
+  #numeroPorte;
+  #alimentazione;
+
+  // conterrà un contatore di istanze della classe automobile
+  static numIstanze = 0;
+
+  constructor(marca, anno, numeroPorte) {
+    // super invoca il costruttore della classe padre (solo se necessario)
+    super(marca, anno);
+    this.numeroPorte = numeroPorte;
+  }
+
+  get numeroPorte() {
+    return this.#numeroPorte;
+  }
+
+  get alimentazione() {
+    return this.#alimentazione;
+  }
+
+  set numeroPorte(value) {
+    this.#numeroPorte = +value;
+  }
+
+  set alimentazione(value) {
+    this.#alimentazione = +value;
+  }
+}
+
+const auto2 = new Automobile("BMW", 2019);
+auto2.colore = "blu";
+
+console.log(auto2.informazioni());
